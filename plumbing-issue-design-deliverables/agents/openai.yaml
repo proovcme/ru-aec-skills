@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plumbing Design Deliverables"
+  short_description: "Prepare checked plumbing issue packages"
+  default_prompt: "Use $plumbing-issue-design-deliverables to prepare and verify a plumbing design issue package."

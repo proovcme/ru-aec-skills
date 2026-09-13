@@ -1,0 +1,4 @@
+interface:
+  display_name: "Исходные данные ОВ РФ"
+  short_description: "Формирует проверяемую основу проекта ОВ"
+  default_prompt: "Используй $hvac-define-design-basis, чтобы сформировать исходные данные и нормативную карту проекта ОВ в РФ."

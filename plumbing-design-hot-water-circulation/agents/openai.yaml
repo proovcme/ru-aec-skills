@@ -1,0 +1,4 @@
+interface:
+  display_name: "Hot Water Circulation"
+  short_description: "Design hot-water generation and circulation"
+  default_prompt: "Use $plumbing-design-hot-water-circulation to design hot-water distribution and circulation."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plumbing Sizing & Selection"
+  short_description: "Size networks and select plumbing equipment"
+  default_prompt: "Use $plumbing-size-and-select-equipment to size piping and select meters, pumps, tanks, and control equipment."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Управление проектом ОКС РФ"
+  short_description: "Ведёт объект по всему жизненному циклу"
+  default_prompt: "Используй $aec-govern-rf-capital-project, чтобы построить нормативный маршрут проектирования и строительства объекта в РФ."

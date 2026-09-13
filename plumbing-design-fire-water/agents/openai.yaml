@@ -1,0 +1,4 @@
+interface:
+  display_name: "Fire Water Design"
+  short_description: "Plan internal fire-water systems safely"
+  default_prompt: "Use $plumbing-design-fire-water to develop a verified internal fire-water design workflow."

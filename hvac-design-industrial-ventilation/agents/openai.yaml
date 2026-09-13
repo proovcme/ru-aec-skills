@@ -1,0 +1,4 @@
+interface:
+  display_name: "Промышленная вентиляция РФ"
+  short_description: "Проектирует местную и общеобменную вентиляцию"
+  default_prompt: "Используй $hvac-design-industrial-ventilation, чтобы разработать вентиляцию производственного или складского объекта в РФ."

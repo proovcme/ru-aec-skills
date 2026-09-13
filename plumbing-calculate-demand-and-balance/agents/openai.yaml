@@ -1,0 +1,4 @@
+interface:
+  display_name: "Water Demand & Balance"
+  short_description: "Calculate water demand and discharge"
+  default_prompt: "Use $plumbing-calculate-demand-and-balance to calculate water demand, wastewater flows, and the project water balance."

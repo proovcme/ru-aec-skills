@@ -1,0 +1,4 @@
+interface:
+  display_name: "Документация ОВ РФ"
+  short_description: "Готовит и проверяет ПД и РД раздела ОВ"
+  default_prompt: "Используй $hvac-issue-rf-documentation, чтобы подготовить и проверить комплект ПД или РД раздела ОВ в РФ."

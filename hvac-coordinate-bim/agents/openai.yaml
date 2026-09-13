@@ -1,0 +1,4 @@
+interface:
+  display_name: "BIM-координация ОВ"
+  short_description: "Переводит инженерные решения ОВ в BIM"
+  default_prompt: "Используй $hvac-coordinate-bim, чтобы скоординировать системы ОВ и задания смежникам в BIM."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Водяное отопление РФ"
+  short_description: "Проектирует и рассчитывает водяное отопление"
+  default_prompt: "Используй $hvac-design-hydronic-heating, чтобы разработать систему водяного отопления для проекта в РФ."

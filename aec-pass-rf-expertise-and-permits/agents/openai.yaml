@@ -1,0 +1,4 @@
+interface:
+  display_name: "Экспертиза и разрешения РФ"
+  short_description: "Ведёт экспертизу и разрешение на строительство"
+  default_prompt: "Используй $aec-pass-rf-expertise-and-permits, чтобы определить и пройти экспертизу и получить разрешение на строительство."

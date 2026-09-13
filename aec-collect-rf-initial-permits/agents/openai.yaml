@@ -1,0 +1,4 @@
+interface:
+  display_name: "Исходно-разрешительные данные РФ"
+  short_description: "Собирает ИРД и ограничения участка"
+  default_prompt: "Используй $aec-collect-rf-initial-permits, чтобы собрать и проверить исходно-разрешительную документацию объекта."

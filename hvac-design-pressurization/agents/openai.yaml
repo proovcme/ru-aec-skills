@@ -1,0 +1,4 @@
+interface:
+  display_name: "Противодымный подпор РФ"
+  short_description: "Рассчитывает системы подпора воздуха"
+  default_prompt: "Используй $hvac-design-pressurization, чтобы рассчитать и скоординировать противодымный подпор воздуха по требованиям РФ."

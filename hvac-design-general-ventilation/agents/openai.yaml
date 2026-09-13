@@ -1,0 +1,4 @@
+interface:
+  display_name: "Общеобменная вентиляция РФ"
+  short_description: "Проектирует общеобменные системы вентиляции"
+  default_prompt: "Используй $hvac-design-general-ventilation, чтобы разработать общеобменную вентиляцию здания в РФ."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Вентиляция автостоянок РФ"
+  short_description: "Проектирует вентиляцию закрытых автостоянок"
+  default_prompt: "Используй $hvac-design-parking-ventilation, чтобы разработать общеобменную вентиляцию закрытой автостоянки в РФ."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plumbing BIM Coordination"
+  short_description: "Coordinate plumbing systems in BIM"
+  default_prompt: "Use $plumbing-coordinate-bim to coordinate plumbing systems and discipline interfaces in BIM."

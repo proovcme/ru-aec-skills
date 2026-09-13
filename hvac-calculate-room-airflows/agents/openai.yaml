@@ -1,0 +1,4 @@
+interface:
+  display_name: "Расчёт воздухообмена РФ"
+  short_description: "Рассчитывает расходы воздуха помещений"
+  default_prompt: "Используй $hvac-calculate-room-airflows, чтобы рассчитать и свести воздухообмен помещений по требованиям РФ."

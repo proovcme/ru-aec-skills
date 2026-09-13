@@ -1,0 +1,4 @@
+interface:
+  display_name: "Building Drainage Design"
+  short_description: "Design gravity and pumped drainage"
+  default_prompt: "Use $plumbing-design-drainage to develop gravity and pumped building-drainage systems."

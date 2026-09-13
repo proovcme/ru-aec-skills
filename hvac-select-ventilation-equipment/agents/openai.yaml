@@ -1,0 +1,4 @@
+interface:
+  display_name: "Подбор вентиляционного оборудования РФ"
+  short_description: "Формирует и проверяет подбор оборудования"
+  default_prompt: "Используй $hvac-select-ventilation-equipment, чтобы подобрать и проверить вентиляционное оборудование для проекта в РФ."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Концепция систем ОВ РФ"
+  short_description: "Выбирает и обосновывает концепцию ОВ"
+  default_prompt: "Используй $hvac-select-system-strategy, чтобы сравнить и выбрать концепцию систем ОВ для российского проекта."

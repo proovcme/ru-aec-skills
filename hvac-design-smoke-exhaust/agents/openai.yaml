@@ -1,0 +1,4 @@
+interface:
+  display_name: "Дымоудаление РФ"
+  short_description: "Проектирует вытяжную противодымную защиту"
+  default_prompt: "Используй $hvac-design-smoke-exhaust, чтобы разработать вытяжную противодымную вентиляцию по требованиям РФ."

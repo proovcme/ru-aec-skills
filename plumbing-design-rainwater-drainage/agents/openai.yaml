@@ -1,0 +1,4 @@
+interface:
+  display_name: "Rainwater Drainage"
+  short_description: "Design internal roof drainage systems"
+  default_prompt: "Use $plumbing-design-rainwater-drainage to develop and check an internal roof-drainage design."

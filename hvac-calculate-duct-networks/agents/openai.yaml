@@ -1,0 +1,4 @@
+interface:
+  display_name: "Аэродинамический расчёт РФ"
+  short_description: "Рассчитывает воздуховоды и потери давления"
+  default_prompt: "Используй $hvac-calculate-duct-networks, чтобы выполнить аэродинамический расчёт сети воздуховодов."

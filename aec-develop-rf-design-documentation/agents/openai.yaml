@@ -1,0 +1,4 @@
+interface:
+  display_name: "Проектная документация РФ"
+  short_description: "Организует разработку ПД и РД"
+  default_prompt: "Используй $aec-develop-rf-design-documentation, чтобы организовать разработку и выпуск ПД и РД по требованиям РФ."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Инженерные изыскания РФ"
+  short_description: "Формирует программу и проверяет результаты изысканий"
+  default_prompt: "Используй $aec-manage-rf-engineering-surveys, чтобы спланировать и принять инженерные изыскания для объекта в РФ."

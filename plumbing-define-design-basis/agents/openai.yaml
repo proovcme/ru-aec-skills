@@ -1,0 +1,4 @@
+interface:
+  display_name: "Plumbing Design Basis"
+  short_description: "Frame water and drainage design inputs"
+  default_prompt: "Use $plumbing-define-design-basis to establish a verified plumbing design basis for this project."

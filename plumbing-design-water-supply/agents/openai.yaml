@@ -1,0 +1,4 @@
+interface:
+  display_name: "Water Supply Design"
+  short_description: "Develop internal water supply systems"
+  default_prompt: "Use $plumbing-design-water-supply to develop a coordinated internal water-supply design."
