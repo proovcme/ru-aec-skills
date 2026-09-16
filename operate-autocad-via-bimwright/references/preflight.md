@@ -53,4 +53,3 @@ Do not call a task ready merely because the server process started. Readiness re
 - After restarting AutoCAD, assume the AutoCAD-side advanced opt-in is off until the read-only probe proves otherwise.
 - After restarting the MCP server, assume the server-side flag is unknown until its configuration or the probe confirms it.
 - After a timeout, do not use a second write as a probe. First establish whether the previous mutation committed.
-

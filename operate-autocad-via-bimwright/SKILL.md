@@ -51,4 +51,3 @@ Do not report a CAD task as complete until all applicable conditions hold:
 - the source/reference files were not modified.
 
 Return a concise verification record containing the output path, target identity, entity counts by type/layer, representative handles, block/attribute checks, layout checks, save evidence, visual evidence, and any capability gaps.
-

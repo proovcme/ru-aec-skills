@@ -53,4 +53,3 @@ Capture the active layout for visual review. If the MCP capture omits a floating
 ## Sheet-set consistency
 
 For multiple sheets, derive shared values once and apply them consistently. Check unique layout/sheet numbers, ordered numbering, common title-block revision, matching project metadata, continuation references, and a coherent list of drawings. Do not duplicate a layout and leave stale attributes or viewport targets.
-

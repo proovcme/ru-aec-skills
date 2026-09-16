@@ -32,4 +32,3 @@ Before routing any mutation, run [preflight.md](preflight.md). In particular, te
 Suitable cases include reading the exact database filename, enumerating layouts not exposed by typed tools, creating/configuring layouts and viewports, cloning block definitions between open databases, and inspecting native table cells. Keep code minimal, transaction-scoped, and return a small structured result. Mutation code requires both server-side and in-AutoCAD opt-in; never attempt to bypass either control.
 
 If the preflight reports that advanced mode is disabled, do not discover that halfway through production and quietly replace semantic objects with drafting primitives. Report the missing opt-in before mutation and either continue in typed mode only when it fully satisfies the requested deliverable or wait for the required configuration.
-

@@ -63,4 +63,3 @@ Read back both the definition and representative references: names, handles, nes
 ## Updating an existing block
 
 Before redefining a block, inventory all references and dynamic/attribute data, then back up the DWG. Preserve the existing data contract unless the user requested a migration. After redefinition, synchronize attributes deliberately and verify that instance values, transforms, and visibility remain correct. Never assume redefining geometry alone updates every reference safely.
-

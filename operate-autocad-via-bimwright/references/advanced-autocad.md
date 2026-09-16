@@ -34,4 +34,3 @@ The tool is intentionally guarded twice: the MCP server must allow code executio
 - Asynchronous command dispatch may finish after the MCP call returns. Poll using read-only checks rather than immediately sending another write.
 - Opening a DWG and switching `MdiActiveDocument` from background code can block the AutoCAD UI thread. Prefer selecting/opening the intended drawing outside the background callback, then verify its exact database path through MCP.
 - Never treat the appearance of a target file or a changed tab caption as proof that Save As or document switching completed.
-

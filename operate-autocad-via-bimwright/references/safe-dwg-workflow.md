@@ -54,4 +54,3 @@ If saving to the current active path returns a filer error, a native queued `QSA
 ## Evidence hierarchy
 
 Strong evidence is, in order: exact active path, native entity readback, block/attribute or table-cell readback, saved file state, and visual capture. A PNG alone proves only what was rendered, not the underlying DWG semantics.
-
