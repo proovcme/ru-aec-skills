@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ведомость объёмов работ"
+  short_description: "Готовит проверяемую ВОР из PDF и модели"
+  default_prompt: "Используй $prepare-work-quantity-statement, чтобы составить проверяемую ВОР по комплекту проектной документации."
