@@ -26,6 +26,49 @@ def test_position_does_not_double_count_machine_labor():
     }
 
 
+def test_machine_labor_uses_driver_codes_and_current_wages():
+    result = MODULE.machine_labor(
+        {
+            "machines": [
+                {
+                    "machine_code": "91.05.05-015",
+                    "machine_hours": "0.09",
+                    "labour_mach": "1",
+                    "driver_code": "4-100-060",
+                    "current_salary": "814.34",
+                },
+                {
+                    "machine_code": "91.14.02-001",
+                    "machine_hours": "0.09",
+                    "labour_mach": "1",
+                    "driver_code": "4-100-040",
+                    "current_salary": "606.23",
+                },
+            ]
+        }
+    )
+    assert result["labor_hours"] == "0.18"
+    assert result["labor_cost"] == "127.85"
+    assert result["weighted_hourly_rate"] == "710.29"
+
+
+def test_machine_without_crew_has_zero_machine_labor():
+    result = MODULE.machine_labor(
+        {
+            "machines": [
+                {
+                    "machine_code": "91.17.04-194",
+                    "machine_hours": "0.91",
+                    "labour_mach": "0",
+                    "current_salary": "0",
+                }
+            ]
+        }
+    )
+    assert result["labor_hours"] == "0.00"
+    assert result["labor_cost"] == "0.00"
+
+
 def test_price_context_mismatch_fails_validation():
     result = MODULE.validate_price(
         {

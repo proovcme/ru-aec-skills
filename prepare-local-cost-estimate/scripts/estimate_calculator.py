@@ -48,6 +48,43 @@ def resource(payload: dict) -> dict:
     return {"quantity": str(quantity), "resolved_price": str(price), "cost": money(quantity * price)}
 
 
+def machine_labor(payload: dict) -> dict:
+    machines = payload.get("machines")
+    if not isinstance(machines, list) or not machines:
+        raise ValueError("machines must be a non-empty list")
+
+    total_hours = Decimal(0)
+    total_cost = Decimal(0)
+    components = []
+    for index, item in enumerate(machines):
+        machine_hours = dec(item["machine_hours"], f"machines[{index}].machine_hours")
+        labour_mach = dec(item.get("labour_mach", 0), f"machines[{index}].labour_mach")
+        salary = dec(item.get("current_salary", 0), f"machines[{index}].current_salary")
+        if machine_hours < 0 or labour_mach < 0 or salary < 0:
+            raise ValueError("machine hours, labour_mach and current_salary must be nonnegative")
+        labor_hours = machine_hours * labour_mach
+        cost = labor_hours * salary
+        total_hours += labor_hours
+        total_cost += cost
+        components.append(
+            {
+                "machine_code": item.get("machine_code"),
+                "driver_code": item.get("driver_code"),
+                "labor_hours": str(labor_hours),
+                "current_salary": str(salary),
+                "cost": money(cost),
+            }
+        )
+
+    weighted_rate = total_cost / total_hours if total_hours else Decimal(0)
+    return {
+        "labor_hours": str(total_hours),
+        "labor_cost": money(total_cost),
+        "weighted_hourly_rate": money(weighted_rate),
+        "components": components,
+    }
+
+
 def position(payload: dict) -> dict:
     ot = dec(payload.get("ot", 0), "ot")
     em = dec(payload.get("em", 0), "em")
@@ -78,9 +115,11 @@ def calculate(payload: dict) -> dict:
         return validate_price(payload)
     if action == "resource":
         return resource(payload)
+    if action == "machine_labor":
+        return machine_labor(payload)
     if action == "position":
         return position(payload)
-    raise ValueError("action must be validate_price, resource or position")
+    raise ValueError("action must be validate_price, resource, machine_labor or position")
 
 
 def main() -> None:
