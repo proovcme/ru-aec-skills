@@ -41,6 +41,8 @@ def validate_price(payload: dict) -> dict:
 
 
 def resource(payload: dict) -> dict:
+    if str(payload.get("quantity", "")).strip().upper() in {"П", "P"}:
+        raise ValueError("quantity is project-defined; keep status project_quantity and exclude it from confirmed totals")
     quantity = dec(payload["quantity"], "quantity")
     price = dec(payload["resolved_price"], "resolved_price")
     if quantity < 0 or price < 0:
@@ -93,9 +95,13 @@ def position(payload: dict) -> dict:
     otm = dec(payload.get("otm", 0), "otm")
     nr_rate = dec(payload.get("nr_rate", 0), "nr_rate")
     sp_rate = dec(payload.get("sp_rate", 0), "sp_rate")
+    if "em_includes_otm" not in payload or not isinstance(payload["em_includes_otm"], bool):
+        raise ValueError("em_includes_otm must be an explicit boolean supported by the source representation")
+    em_includes_otm = payload["em_includes_otm"]
     if any(value < 0 for value in (ot, em, materials, other, otm, nr_rate, sp_rate)):
         raise ValueError("costs and rates must be nonnegative")
-    direct = ot + em + materials + other
+    otm_direct_component = Decimal(0) if em_includes_otm else otm
+    direct = ot + em + otm_direct_component + materials + other
     fot = ot + otm
     nr = fot * nr_rate / Decimal(100)
     sp = fot * sp_rate / Decimal(100)
@@ -105,7 +111,8 @@ def position(payload: dict) -> dict:
         "overheads": money(nr),
         "estimated_profit": money(sp),
         "total": money(direct + nr + sp),
-        "otm_in_direct_cost": False,
+        "em_includes_otm": em_includes_otm,
+        "otm_added_to_direct_cost": not em_includes_otm,
     }
 
 

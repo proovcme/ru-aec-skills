@@ -14,7 +14,8 @@ def test_resource_uses_resolved_price():
 
 def test_position_does_not_double_count_machine_labor():
     result = MODULE.position(
-        {"ot": 100, "em": 50, "otm": 10, "materials": 25, "nr_rate": 100, "sp_rate": 50}
+        {"ot": 100, "em": 50, "otm": 10, "materials": 25, "nr_rate": 100, "sp_rate": 50,
+         "em_includes_otm": True}
     )
     assert result == {
         "direct_cost": "175.00",
@@ -22,8 +23,43 @@ def test_position_does_not_double_count_machine_labor():
         "overheads": "110.00",
         "estimated_profit": "55.00",
         "total": "340.00",
-        "otm_in_direct_cost": False,
+        "em_includes_otm": True,
+        "otm_added_to_direct_cost": False,
     }
+
+
+def test_position_adds_machine_labor_when_machine_cost_excludes_it():
+    result = MODULE.position(
+        {"ot": 100, "em": 50, "otm": 10, "materials": 25, "nr_rate": 100, "sp_rate": 50,
+         "em_includes_otm": False}
+    )
+    assert result == {
+        "direct_cost": "185.00",
+        "fot": "110.00",
+        "overheads": "110.00",
+        "estimated_profit": "55.00",
+        "total": "350.00",
+        "em_includes_otm": False,
+        "otm_added_to_direct_cost": True,
+    }
+
+
+def test_position_requires_explicit_machine_cost_semantics():
+    try:
+        MODULE.position({"ot": 100, "em": 50, "otm": 10})
+    except ValueError as exc:
+        assert "em_includes_otm" in str(exc)
+    else:
+        raise AssertionError("position must reject an implicit EM/OTm assumption")
+
+
+def test_project_quantity_is_not_silently_zeroed():
+    try:
+        MODULE.resource({"quantity": "П", "resolved_price": 1})
+    except ValueError as exc:
+        assert "project_quantity" in str(exc)
+    else:
+        raise AssertionError("project-defined quantity must remain unresolved")
 
 
 def test_machine_labor_uses_driver_codes_and_current_wages():
