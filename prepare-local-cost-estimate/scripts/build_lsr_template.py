@@ -160,7 +160,8 @@ def build(path: Path) -> None:
     headers = [
         "LSR-ID", "ВОР-ID", "Раздел / зона", "Код нормы / ресурса", "Редакция / GUID", "Ед. нормы",
         "Объём ВОР", "Объём нормы", "Коэффициент и пункт", "Источник цены", "Субъект / зона / период",
-        "Строка ЛСР", "Доказательство применимости", "Статус", "Ответ / уточнение пользователя",
+        "Строка ЛСР", "Доказательство применимости", "Статус применимости нормы", "Матрица сопоставления",
+        "Границы учтённых работ", "Статус расчёта", "Ответ / уточнение пользователя",
         "Решение после ответа", "price_kind", "price_base", "index", "Группа однородных ресурсов",
         "resolved_price", "zone_id", "period_id", "dataset / source row", "provenance",
     ]
@@ -170,7 +171,7 @@ def build(path: Path) -> None:
         cell.font = Font(name="Arial", size=9, bold=True, color=WHITE)
         cell.alignment = Alignment(horizontal="center", vertical="center", wrap_text=True)
         cell.border = Border(left=THIN, right=THIN, top=THIN, bottom=THIN)
-        audit.column_dimensions[get_column_letter(col)].width = 18 if col not in {13, 24, 25} else 42
+        audit.column_dimensions[get_column_letter(col)].width = 18 if col not in {13, 15, 16, 27, 28} else 42
     audit.row_dimensions[1].height = 45
 
     path.parent.mkdir(parents=True, exist_ok=True)

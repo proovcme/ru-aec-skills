@@ -15,7 +15,8 @@ def test_resource_uses_resolved_price():
 def test_position_does_not_double_count_machine_labor():
     result = MODULE.position(
         {"ot": 100, "em": 50, "otm": 10, "materials": 25, "nr_rate": 100, "sp_rate": 50,
-         "em_includes_otm": True}
+         "em_includes_otm": True, "applicability_status": "ТОЧНАЯ НОРМА",
+         "included_in_confirmed_total": True}
     )
     assert result == {
         "direct_cost": "175.00",
@@ -25,13 +26,16 @@ def test_position_does_not_double_count_machine_labor():
         "total": "340.00",
         "em_includes_otm": True,
         "otm_added_to_direct_cost": False,
+        "applicability_status": "ТОЧНАЯ НОРМА",
+        "included_in_confirmed_total": True,
     }
 
 
 def test_position_adds_machine_labor_when_machine_cost_excludes_it():
     result = MODULE.position(
         {"ot": 100, "em": 50, "otm": 10, "materials": 25, "nr_rate": 100, "sp_rate": 50,
-         "em_includes_otm": False}
+         "em_includes_otm": False, "applicability_status": "ТОЧНАЯ НОРМА",
+         "included_in_confirmed_total": True}
     )
     assert result == {
         "direct_cost": "185.00",
@@ -41,16 +45,57 @@ def test_position_adds_machine_labor_when_machine_cost_excludes_it():
         "total": "350.00",
         "em_includes_otm": False,
         "otm_added_to_direct_cost": True,
+        "applicability_status": "ТОЧНАЯ НОРМА",
+        "included_in_confirmed_total": True,
     }
 
 
 def test_position_requires_explicit_machine_cost_semantics():
     try:
-        MODULE.position({"ot": 100, "em": 50, "otm": 10})
+        MODULE.position({"ot": 100, "em": 50, "otm": 10,
+                         "applicability_status": "ТОЧНАЯ НОРМА",
+                         "included_in_confirmed_total": True})
     except ValueError as exc:
         assert "em_includes_otm" in str(exc)
     else:
         raise AssertionError("position must reject an implicit EM/OTm assumption")
+
+
+def test_restricted_norm_without_matrix_cannot_enter_confirmed_total():
+    try:
+        MODULE.position(
+            {"ot": 100, "em_includes_otm": True,
+             "applicability_status": "ПРИМЕНИМО С ОГРАНИЧЕНИЯМИ",
+             "included_in_confirmed_total": True,
+             "comparison_matrix_complete": False}
+        )
+    except ValueError as exc:
+        assert "comparison_matrix_complete" in str(exc)
+    else:
+        raise AssertionError("restricted norm without a completed matrix must be rejected")
+
+
+def test_restricted_norm_may_remain_visible_outside_confirmed_total():
+    result = MODULE.position(
+        {"ot": 100, "em_includes_otm": True,
+         "applicability_status": "ПРИМЕНИМО С ОГРАНИЧЕНИЯМИ",
+         "included_in_confirmed_total": False,
+         "comparison_matrix_complete": False}
+    )
+    assert result["included_in_confirmed_total"] is False
+
+
+def test_unconfirmed_position_cannot_enter_confirmed_total():
+    try:
+        MODULE.position(
+            {"ot": 100, "em_includes_otm": True,
+             "applicability_status": "НЕ ПОДТВЕРЖДЕНО",
+             "included_in_confirmed_total": True}
+        )
+    except ValueError as exc:
+        assert "unconfirmed" in str(exc)
+    else:
+        raise AssertionError("unconfirmed position must be rejected")
 
 
 def test_project_quantity_is_not_silently_zeroed():

@@ -88,6 +88,26 @@ def machine_labor(payload: dict) -> dict:
 
 
 def position(payload: dict) -> dict:
+    if "applicability_status" not in payload:
+        raise ValueError("applicability_status is required for every position")
+    status = str(payload["applicability_status"]).strip().upper()
+    allowed_statuses = {
+        "ТОЧНАЯ НОРМА",
+        "ПРИМЕНИМО С ОГРАНИЧЕНИЯМИ",
+        "ОТДЕЛЬНАЯ КАЛЬКУЛЯЦИЯ",
+        "НЕ ПОДТВЕРЖДЕНО",
+    }
+    if status not in allowed_statuses:
+        raise ValueError(f"unsupported applicability_status: {payload['applicability_status']!r}")
+    if "included_in_confirmed_total" not in payload or not isinstance(payload["included_in_confirmed_total"], bool):
+        raise ValueError("included_in_confirmed_total must be an explicit boolean")
+    included = payload["included_in_confirmed_total"]
+    matrix_complete = payload.get("comparison_matrix_complete") is True
+    if status == "ПРИМЕНИМО С ОГРАНИЧЕНИЯМИ" and included and not matrix_complete:
+        raise ValueError("restricted norm cannot enter confirmed total until comparison_matrix_complete is true")
+    if status == "НЕ ПОДТВЕРЖДЕНО" and included:
+        raise ValueError("unconfirmed position cannot enter confirmed total")
+
     ot = dec(payload.get("ot", 0), "ot")
     em = dec(payload.get("em", 0), "em")
     materials = dec(payload.get("materials", 0), "materials")
@@ -113,6 +133,8 @@ def position(payload: dict) -> dict:
         "total": money(direct + nr + sp),
         "em_includes_otm": em_includes_otm,
         "otm_added_to_direct_cost": not em_includes_otm,
+        "applicability_status": status,
+        "included_in_confirmed_total": included,
     }
 
 
