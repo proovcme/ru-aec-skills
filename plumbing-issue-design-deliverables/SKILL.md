@@ -36,3 +36,5 @@ description: Prepare and verify plumbing design packages containing calculations
 Для локальной задачи — только затронутые результаты, допущения и проверка, без пустых/повторных реестров. Для полного цикла:
 
 Выдай issue register, QC-checklist, перечень файлов, журнал изменений, допущения, исключения и открытые действия.
+
+Для расчётной части и оформления применять [методику проверок](../aec-develop-rf-design-documentation/references/engineering-calculation-methods.md) и [контроль выдачи](../aec-develop-rf-design-documentation/references/engineering-documentation-quality.md). Сохранять связь ввода/выпуска, стояков, отметок, расчёта и СО.
